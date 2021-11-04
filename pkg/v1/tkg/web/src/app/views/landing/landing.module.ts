@@ -37,7 +37,8 @@ import { ErrorNotificationComponent } from "../../shared/components/error-notifi
     ],
     exports: [
         ConfirmComponent,
-        ErrorNotificationComponent
+        ErrorNotificationComponent,
+        DeployProgressComponent
     ]
 })
 

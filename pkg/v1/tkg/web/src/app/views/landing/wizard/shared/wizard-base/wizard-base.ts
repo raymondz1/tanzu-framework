@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { BasicSubscriber } from 'src/app/shared/abstracts/basic-subscriber';
 import { APP_ROUTES, Routes } from 'src/app/shared/constants/routes.constants';
-import { Providers, PROVIDERS } from 'src/app/shared/constants/app.constants';
+import { Providers, PROVIDERS, StepEnum } from 'src/app/shared/constants/app.constants';
 import { FormMetaDataStore } from '../FormMetaDataStore';
 import { debounceTime, take, takeUntil } from 'rxjs/operators';
 import { TkgEvent, TkgEventType } from './../../../../../shared/service/Messenger';
@@ -40,6 +40,8 @@ export abstract class WizardBaseDirective extends BasicSubscriber implements Aft
     clusterTypeDescriptor: string;
 
     steps = [true, false, false, false, false, false, false, false, false, false, false];
+    stepController: StepEnum = StepEnum.WIZARD;
+    STEP_ENUM: any = StepEnum;
     review = false;
 
     constructor(
@@ -166,7 +168,8 @@ export abstract class WizardBaseDirective extends BasicSubscriber implements Aft
                     this.errorNotification = `Failed to apply tkg config. ${error}`;
                 }
             );
-        this.review = review;
+        // this.review = review;
+        this.stepController = review ? StepEnum.CONFIRMATION : StepEnum.WIZARD;
     }
 
     exportConfiguration() {
@@ -214,7 +217,8 @@ export abstract class WizardBaseDirective extends BasicSubscriber implements Aft
             .pipe(takeUntil(this.unsubscribe))
             .subscribe(
                 (() => {
-                    this.navigate(APP_ROUTES.WIZARD_PROGRESS);
+                    // this.navigate(APP_ROUTES.WIZARD_PROGRESS);
+                    this.stepController = StepEnum.DEPLOYMENT;
                 }),
                 ((err) => {
                     const error = err.error.message || err.message || JSON.stringify(err);
@@ -243,6 +247,9 @@ export abstract class WizardBaseDirective extends BasicSubscriber implements Aft
         this.router.navigate([route]);
     }
 
+    navigateTo = (step: StepEnum) => {
+        this.stepController = step;
+    }
     /**
      * Set the next step to be rendered. In initial wizard walkthrouh,
      * each step content is rendered sequentially, but in subsequent walkthrough,

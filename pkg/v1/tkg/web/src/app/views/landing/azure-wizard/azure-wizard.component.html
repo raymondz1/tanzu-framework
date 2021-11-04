@@ -1,4 +1,4 @@
-<div [ngClass]="{'hide': review}">
+<div [ngClass]="{'hide': stepController !== STEP_ENUM.WIZARD}">
     <div class="clr-row mb-20">
         <div class="clr-col-12">
             <clr-icon shape="arrow" dir="left" size="30" class="is-info back-link"
@@ -156,7 +156,7 @@
     </button>
 </div>
 
-<ng-container *ngIf="review">
+<ng-container *ngIf="stepController === STEP_ENUM.CONFIRMATION">
     <tkg-kickstart-ui-confirm></tkg-kickstart-ui-confirm>
     <app-error-notification [errorNotification]="errorNotification"></app-error-notification>
     <div class="clr-row mt-20">
@@ -176,4 +176,7 @@
             </ng-container>
         </div>
     </div>
+</ng-container>
+<ng-container *ngIf="stepController === STEP_ENUM.DEPLOYMENT">
+    <tkg-kickstart-ui-deploy-progress [navigate]="navigateTo"></tkg-kickstart-ui-deploy-progress>
 </ng-container>

@@ -1,5 +1,5 @@
 // Angular imports
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 // Third party imports
 import {
@@ -15,6 +15,7 @@ import { WebsocketService } from '../../../shared/service/websocket.service';
 import { FormMetaDataStore } from '../wizard/shared/FormMetaDataStore';
 import { TkgEvent, TkgEventType } from "../../../shared/service/Messenger";
 import Broker from 'src/app/shared/service/broker';
+import { StepEnum } from 'src/app/shared/constants/app.constants';
 
 @Component({
     selector: 'tkg-kickstart-ui-deploy-progress',
@@ -22,6 +23,8 @@ import Broker from 'src/app/shared/service/broker';
     styleUrls: ['./deploy-progress.component.scss']
 })
 export class DeployProgressComponent extends BasicSubscriber implements OnInit {
+    @Input() navigate: (arg: StepEnum) => void;
+    STEP_ENUM: any = StepEnum;
 
     providerType: string = '';
     cli: string = '';
@@ -40,6 +43,8 @@ export class DeployProgressComponent extends BasicSubscriber implements OnInit {
     APP_ROUTES: Routes = APP_ROUTES;
     phases: Array<string> = [];
     currentPhaseIdx: number;
+
+    enableEditBtn: boolean = false;
 
     constructor(private websocketService: WebsocketService) {
         super();
@@ -150,6 +155,8 @@ export class DeployProgressComponent extends BasicSubscriber implements OnInit {
                 FormMetaDataStore.deleteAllSavedData();
             } else if (this.curStatus.status !== 'failed') {
                 this.curStatus.finishedCount = Math.max(0, data.data.totalPhases.indexOf(this.curStatus.curPhase));
+            } else if (this.curStatus.status === 'failed') {
+                this.enableEditBtn = true;
             }
 
             this.curStatus.totalCount = data.data.totalPhases ? data.data.totalPhases.length : 0;

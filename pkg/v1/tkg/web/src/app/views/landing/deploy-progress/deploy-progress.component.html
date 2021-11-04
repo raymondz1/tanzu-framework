@@ -32,7 +32,13 @@
 
 <div class="clr-row">
     <div class="clr-col-12">
-        <h2 i18n="deploy progress page welcome title" aria-level="1">Deploying {{ pageTitle }} on {{ providerType }}</h2>
+        <h2 i18n="deploy progress page welcome title" aria-level="1">
+            Deploying {{ pageTitle }} on {{ providerType }}
+            <button class="btn btn-primary mt-20" *ngIf="enableEditBtn" (click)="navigate(STEP_ENUM.WIZARD)">
+                EDIT CONFIGURATION
+            </button>
+        </h2>
+        
         <div>
             {{ getStatusDescription() }}
         </div>

@@ -20,3 +20,9 @@ export enum IpFamilyEnum {
     IPv4 = 'ipv4',
     IPv6 = 'ipv6'
 };
+
+export enum StepEnum {
+    WIZARD = 'wizard',
+    CONFIRMATION = 'confirmation',
+    DEPLOYMENT = 'deployment'
+};
