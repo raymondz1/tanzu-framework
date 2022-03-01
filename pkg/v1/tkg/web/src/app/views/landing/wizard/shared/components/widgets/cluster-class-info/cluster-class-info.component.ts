@@ -1,5 +1,6 @@
 // Angular imports
 import { Component, Input, OnInit } from '@angular/core';
+import { ContextualHelpService } from 'src/app/shared/contextual-help/contextual-help.service';
 
 // App imports
 import clusterClassData from './cluster-class-data.json';
@@ -25,7 +26,9 @@ export class ClusterClassInfoComponent implements OnInit {
 
     clusterClasses: Array<ClusterClass> = [];
 
-    constructor() { }
+    constructor(
+        public contextualHelpService: ContextualHelpService
+    ) { }
 
     ngOnInit(): void {
        this.clusterClasses = clusterClassData[this.providerType.toLowerCase()];

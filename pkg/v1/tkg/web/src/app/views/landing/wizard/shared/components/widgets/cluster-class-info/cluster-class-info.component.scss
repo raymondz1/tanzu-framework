@@ -1,6 +1,12 @@
 :host ::ng-deep {
     .description-wrapper {
         margin-bottom: 20px;
+        a {
+            color: #49aed9;
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
     clr-stack-block {
         .stack-block-content {

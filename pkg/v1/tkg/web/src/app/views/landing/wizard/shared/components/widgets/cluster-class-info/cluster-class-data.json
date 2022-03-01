@@ -1,7 +1,7 @@
 {
     "docker" : [
         {
-            "name" : "clusterClassName TBD",
+            "name" : "tkg-docker-default",
             "categories" : [
                 {
                     "name": "User supplied values",
@@ -135,7 +135,7 @@
     ],
     "vsphere" : [
         {
-            "name" : "clusterClassName TBD",
+            "name" : "tkg-vsphere-default",
             "categories" : [
                 {
                     "name": "User supplied values",
@@ -445,7 +445,7 @@
     ],
     "aws" : [
         {
-            "name" : "clusterClassName TBD",
+            "name" : "tkg-aws-default",
             "categories" : [
                 {
                     "name": "User supplied values",
@@ -775,7 +775,7 @@
     ],
     "azure" : [
         {
-            "name" : "clusterClassName TBD",
+            "name" : "tkg-azure-default",
             "categories" : [
                 {
                     "name": "User supplied values",

@@ -318,3 +318,8 @@ clr-control-error.clr-subtext {
     @include logo-base.logo-container(properties.$logo-docker);
     @include logo-base.logo-sizer(48, 48);
 }
+
+.panel-slide-20 {
+    @include logo-base.logo-container(properties.$panel-slide);
+    @include logo-base.logo-sizer(20, 20);
+}

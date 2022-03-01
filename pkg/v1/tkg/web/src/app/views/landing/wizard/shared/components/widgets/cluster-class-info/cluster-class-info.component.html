@@ -3,8 +3,13 @@
     These can be used in the deployment of workload clusters. When creating a workload cluster, 
     some values must be supplied by the user. Others are defaulted by the cluster class but 
     can be overridden or baked into the cluster class and can not be overridden.
-    For contextual help on cluster classes click here
+    For contextual help on cluster classes click <a (click)="contextualHelpService.open('cluster-class-detail')">here <span class="panel-slide-20"></span></a>
 </div>
+<app-contextual-help
+    id="cluster-class-detail"
+    title="Cluster Classes"
+    keywords="['cluster-class-info']"
+></app-contextual-help>
 <clr-stack-view>
     <clr-stack-block  clrSbExpanded="true" *ngFor="let clusterClass of clusterClasses">
         <clr-stack-label> {{clusterClass.name}} </clr-stack-label>
